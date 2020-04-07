@@ -1,51 +1,47 @@
+--PROBLEM 4
 --Create Student Table
 CREATE TABLE Student
-(Stu_ID 	NUMBER(9) CONSTRAINT Stu_ID_pk PRIMARY KEY,
-Stu_Name 	CHAR(20) CONSTRAINT Stu_Name_nn NOT NULL,
-Stu_Address	VARCHAR2(20),
-Stu_Major	VARCHAR2(10));
-DESC Student;
+(Stu_ID     NUMBER(9) CONSTRAINT Stu_ID_pk PRIMARY KEY,
+Stu_Name     CHAR(20) CONSTRAINT Stu_Name_nn NOT NULL,
+Stu_Address    VARCHAR2(20),
+Stu_Major    VARCHAR2(10)
+);
 --Create Instructor Table
 CREATE TABLE Instructor
-(Instr_ID	NUMBER(3) CONSTRAINT Instr_ID_pk PRIMARY KEY,
-Instr_Name	CHAR(20) CONSTRAINT Instr_Name_nn NOT NULL,
-Instr_Office	VARCHAR2(4));
-DESC Instructor;
+(Instr_ID    NUMBER(3) CONSTRAINT Instr_ID_pk PRIMARY KEY,
+Instr_Name    CHAR(20) CONSTRAINT Instr_Name_nn NOT NULL,
+Instr_Office    VARCHAR2(4));
 --Create Course Table
 CREATE TABLE Course
-(Course_ID	VARCHAR2(7) CONSTRAINT Course_ID_pk PRIMARY KEY, 
-Course_Title	VARCHAR2(30),
-Instr_ID	NUMBER(3),
+(Course_ID    VARCHAR2(7) CONSTRAINT Course_ID_pk PRIMARY KEY,
+Course_Title    VARCHAR2(30),
+Instr_ID    NUMBER(3),
 FOREIGN KEY (Instr_ID)
 REFERENCES Instructor (Instr_ID));
-DESC Course;
 --Create Course Table
 CREATE TABLE GradeReport
-(Stu_ID 	NUMBER(9),
-Course_ID	VARCHAR2(7),
-Stu_Course_Grade	CHAR(1)	CHECK(Stu_Course_Grade IN ('A', 'B', 'C', 'D', 'F')),
+(Stu_ID     NUMBER(9),
+Course_ID    VARCHAR2(7),
+Stu_Course_Grade    CHAR(1)    CHECK(Stu_Course_Grade IN ('A', 'B', 'C', 'D', 'F')),
 PRIMARY KEY (Stu_ID, Course_ID));
-DESC GradeReport;
 --Populate Student table
 INSERT INTO Student
 VALUES(268300458, 'Williams', '208 Brooks', 'CIS');
 INSERT INTO Student
 VALUES(543291073, 'Baker', '104 Philips', 'Acct');
-INSTERT INTO Student
+INSERT INTO Student
 VALUES(695381127, 'White', '208 Brooks', 'Math');
-SELECT * FROM Student;
 --Populate Instructor Table
 INSERT INTO Instructor
 VALUES (301, 'Codd', 'B104');
 INSERT INTO Instructor
 VALUES(451, 'Parsons', 'B317');
 INSERT INTO Instructor
-VALUES(255, 'Miller', 'H310')
+VALUES(255, 'Miller', 'H310');
 INSERT INTO Instructor
 VALUES(518, 'Bennett', 'B212');
 INSERT INTO Instructor
 VALUES(622, 'Hilbert', 'M301');
-SELECT * FROM Instructor;
 --Populate Course Table
 INSERT INTO Course
 VALUES('CIS 350', 'Database', 301);
@@ -57,7 +53,6 @@ INSERT INTO Course
 VALUES ('Mkt 300', 'Into to Mktg', 518);
 INSERT INTO Course
 VALUES ('Mth 202', 'College algebra', 622);
-SELECT * FROM COURSE;
 --Populate GradeReport Table
 INSERT INTO GradeReport
 VALUES(268300458, 'CIS 350', 'A');
@@ -67,10 +62,9 @@ INSERT INTO GradeReport
 VALUES(543291073, 'CIS 350', 'C');
 INSERT INTO GradeReport
 VALUES(543291073, 'Acc 201', 'B');
-INSERT INTO GradeReport 
+INSERT INTO GradeReport
 VALUES(543291073, 'Mkt 300', 'A');
 INSERT INTO GradeReport
 VALUES(695381127, 'Mth 202', 'B');
 INSERT INTO GradeReport
 VALUES(695381127, 'Acc 201', 'A');
-SELECT * FROM GradeReport;
