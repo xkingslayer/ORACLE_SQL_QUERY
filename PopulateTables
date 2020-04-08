@@ -1,29 +1,27 @@
---PROBLEM 4
---Create Student Table
 CREATE TABLE Student
 (Stu_ID     NUMBER(9) CONSTRAINT Stu_ID_pk PRIMARY KEY,
 Stu_Name     CHAR(20) CONSTRAINT Stu_Name_nn NOT NULL,
 Stu_Address    VARCHAR2(20),
-Stu_Major    VARCHAR2(10)
-);
---Create Instructor Table
+Stu_Major    VARCHAR2(10));
+DESC Student;
 CREATE TABLE Instructor
 (Instr_ID    NUMBER(3) CONSTRAINT Instr_ID_pk PRIMARY KEY,
 Instr_Name    CHAR(20) CONSTRAINT Instr_Name_nn NOT NULL,
 Instr_Office    VARCHAR2(4));
---Create Course Table
+DESC Instructor;
 CREATE TABLE Course
 (Course_ID    VARCHAR2(7) CONSTRAINT Course_ID_pk PRIMARY KEY,
 Course_Title    VARCHAR2(30),
 Instr_ID    NUMBER(3),
 FOREIGN KEY (Instr_ID)
 REFERENCES Instructor (Instr_ID));
---Create Course Table
+DESC Course;
 CREATE TABLE GradeReport
 (Stu_ID     NUMBER(9),
 Course_ID    VARCHAR2(7),
 Stu_Course_Grade    CHAR(1)    CHECK(Stu_Course_Grade IN ('A', 'B', 'C', 'D', 'F')),
 PRIMARY KEY (Stu_ID, Course_ID));
+DESC GradeReport;
 --Populate Student table
 INSERT INTO Student
 VALUES(268300458, 'Williams', '208 Brooks', 'CIS');
